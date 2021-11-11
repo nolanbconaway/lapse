@@ -106,7 +106,7 @@ def apply_annotation(text: str, image: np.ndarray) -> np.ndarray:
     """
     height, width, _ = image.shape
     image = cv2.putText(
-        img=np.array(image),  # just in case the image is a view
+        img=image,  # just in case the image is a view
         text=text,
         org=(int(width * 0.01), int(height * 0.03)),
         fontFace=cv2.FONT_HERSHEY_SIMPLEX,
@@ -149,11 +149,16 @@ def make_movie(
     """
     nonempty_paths = [p for p in image_paths if p.stat().st_size > 0]
     height, width, _ = load_image(nonempty_paths[0], **loader_kwargs).shape
+
+    if "cast_to_rbg" in loader_kwargs:
+        print("Warn: ignoring cast_to_rbg because opencv makes the movie and uses BGR.")
+        _ = loader_kwargs.pop("cast_to_rbg")
+
     with VideoWriter(
         str(save_path), cv2.VideoWriter_fourcc(*"DIVX"), fps, (width, height)
     ) as video:
         for image_path in tqdm(nonempty_paths):
-            image = load_image(image_path, **loader_kwargs)
+            image = load_image(image_path, cast_to_rbg=False, **loader_kwargs)
             if annotate_func:
                 image = apply_annotation(annotate_func(image_path, image), image)
             video.write(image)
