@@ -21,5 +21,5 @@ Image Loaders:
 - `multi_load_image`
 
 Movie Makers:
-- 'make_movie'
-- 'make_gif'
+- `make_movie`
+- `make_gif`
