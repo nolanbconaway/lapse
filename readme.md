@@ -8,3 +8,18 @@ but with additions that I had been copying/editing in various jupyter notebooks.
 
 I'm not writing docs and tests bc this is just for me :-). Also not on pypi bc I don't 
 care.
+
+
+Annotation Funcs:
+
+- `date_stamp`
+- `date_hour_stamp`
+
+Image Loaders:
+
+- `load_image`
+- `multi_load_image`
+
+Movie Makers:
+- 'make_movie'
+- 'make_gif'
