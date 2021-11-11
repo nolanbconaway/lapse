@@ -1,0 +1,21 @@
+name: Whatever
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: "3.8"
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install .
+
+      - name: Check Can import
+        run: python -c 'import lapse'

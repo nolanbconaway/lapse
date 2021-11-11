@@ -1,0 +1,14 @@
+
+.env
+__pycache__
+.python-version
+.vscode
+*.pyc
+.DS_Store
+*.egg-info
+.pytest_cache/
+.tox/
+env/
+.venv/
+.coverage
+coverage.xml
